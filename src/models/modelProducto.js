@@ -1,4 +1,4 @@
-const pool = require('../configdb/db.js'); 
+const pool = require('../config/db.js'); 
 
 async function listarProductos(){
     const r = await pool.query('SELECT * FROM productos');
