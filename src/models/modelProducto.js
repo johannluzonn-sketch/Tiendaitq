@@ -21,8 +21,8 @@ async function actualizarProducto(id, nombre, precio, stock){
 }  
  
 async function eliminarProducto(id){
-    const r = await pool.query('DELETE FROM productos WHERE id = $1 RETURNING *', [id]);
-    return r.rows;
+    const r = await pool.query('DELETE FROM productos WHERE id = $1', [id]);
+    return r.rowCount;
 }  
 
 module.exports = {

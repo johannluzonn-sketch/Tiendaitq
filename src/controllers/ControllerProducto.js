@@ -36,7 +36,11 @@ async function actualizarProducto(req, res){
     if(!datosValidados({nombre, precio, stock})){
         return res.status(400).json({error: 'Datos no validos'});
     }
-    res.json(await Producto.actualizarProducto(id, nombre, precio, stock));
+    const resultado = await Producto.actualizarProducto(id, nombre, precio, stock);
+    if(resultado.length === 0){
+        return res.status(404).json({error: 'Producto no encontrado'});
+    }
+    res.status(200).json(resultado[0]);
 }
 
 async function eliminarProducto(req, res){
@@ -44,7 +48,11 @@ async function eliminarProducto(req, res){
     if(!idValido(id)){
         return res.status(400).json({error: 'Id no valido'});
     }
-    res.json(await Producto.eliminarProducto(id));
+    const filas = await Producto.eliminarProducto(id);
+    if(filas === 0){
+        return res.status(404).json({error: 'Producto no encontrado'});
+    }
+    res.status(204).send();
 }
 
 
