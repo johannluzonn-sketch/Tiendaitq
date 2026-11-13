@@ -75,6 +75,15 @@ async function eliminarCategoria(req, res) {
         return res.status(400).json({ error: 'ID inválido' });
     }
     try {
+        // ¿Tiene productos activos? Entonces no se desactiva
+        const total = await Categoria.contarProductosActivos(id);
+        if (total > 0) {
+            return res.status(409).json({
+                error: 'La categoría tiene productos activos',
+                productos: total
+            });
+        }
+        // Borrado lógico: el modelo marca activo = false
         const categoriaEliminada = await Categoria.eliminarCategoria(id);
         if (!categoriaEliminada) {
             return res.status(404).json({ error: 'Categoría no encontrada' });
