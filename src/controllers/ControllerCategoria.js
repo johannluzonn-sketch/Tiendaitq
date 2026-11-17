@@ -1,6 +1,6 @@
 // llamar al modelo de categoria \
 
-const modelCategoria = require('../models/modelCategoria.js');
+const Categoria = require('../models/modelCategoria.js');
 //validacion de datos 
 
 const datosValidados = d => d.nombre && d.nombre.trim() !== '';

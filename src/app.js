@@ -5,6 +5,8 @@ const express = require('express');
 const routesProducto = require('./routes/routesProducto.js');
 //llmar la ruta de categoria 
 const routesCategoria = require('./routes/routesCategoria.js');
+
+const routesAuth = require('./routes/routesAuth.js');
 // crear una app de express
 const app = express();
 app.use(express.json());
@@ -15,6 +17,7 @@ app.use('/productos', routesProducto);
 // Rutas de categoria 
 app.use('/categorias', routesCategoria);
 
+app.use('/auth', routesAuth);
 
 //Manejo de errores
 app.use((err, req, res, next) => {
@@ -25,3 +28,4 @@ app.use((err, req, res, next) => {
 
 //Siver para exportar o empaquetar la aplicacion 
 module.exports = app;
+
