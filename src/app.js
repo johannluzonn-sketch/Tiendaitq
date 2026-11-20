@@ -7,6 +7,9 @@ const routesProducto = require('./routes/routesProducto.js');
 const routesCategoria = require('./routes/routesCategoria.js');
 
 const routesAuth = require('./routes/routesAuth.js');
+
+const routesPedido = require('./routes/routesPedido.js');
+
 // crear una app de express
 const app = express();
 app.use(express.json());
@@ -18,6 +21,8 @@ app.use('/productos', routesProducto);
 app.use('/categorias', routesCategoria);
 
 app.use('/auth', routesAuth);
+
+app.use('/pedidos', routesPedido);
 
 //Manejo de errores
 app.use((err, req, res, next) => {
